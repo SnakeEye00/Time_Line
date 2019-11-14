@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+<android.support.v4.widget.SwipeRefreshLayout
+    android:id="@+id/swipe_ly"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/background">
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/UC"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/OO"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/Seed"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/icon_blood"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+            </android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/W"
+                android:layout_width="match_parent"
+                android:layout_height="200dp">
+            </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:background="@color/background"
+                android:layout_width="match_parent"
+                android:layout_height="50dp" />
+        </LinearLayout>
+    </ScrollView>
+</android.support.v4.widget.SwipeRefreshLayout>
+</LinearLayout>
