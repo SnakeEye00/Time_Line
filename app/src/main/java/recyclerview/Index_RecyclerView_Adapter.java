@@ -41,7 +41,6 @@ public class Index_RecyclerView_Adapter extends RecyclerView.Adapter<Index_Recyc
             }
         }
     };
-
     public Index_RecyclerView_Adapter(Context mContext, InFormationItem inFormationItem){
         this.mContext=mContext;
         this.inFormationItem=inFormationItem;
@@ -88,8 +87,9 @@ public class Index_RecyclerView_Adapter extends RecyclerView.Adapter<Index_Recyc
     }
     @Override
     public int getItemCount() {
-        Log.d("name",inFormationItem.getItemname(0));
+        //Log.d("name",inFormationItem.getItemname(0));
         int length=inFormationItem.getLenght();
+        Log.d("Length",String.valueOf(length));
         return length;
     }
     class IraHolder extends RecyclerView.ViewHolder{    //第一步
