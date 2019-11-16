@@ -31,10 +31,10 @@ public class Index_Gundam extends Fragment {
     private final String url="http://49.233.179.154:8080/Time_Line/getRecycleViewInfo";
     private final String postString="gundam";
     private RecyclerView UC,OO,Seed,icon_blood,W;
-    private InFormationItem[] inFormationItem=new InFormationItem[5];
+    private InFormationItem inFormationItem1,inFormationItem2,inFormationItem3,inFormationItem4,inFormationItem5;
     private static Context context;
     private SwipeRefreshLayout swipeRefreshLayout;
-    private int i;
+    Executor singleThreadPool,getSingleThreadPool1,getSingleThreadPool2,getSingleThreadPool3,getSingleThreadPool4;
     Handler handler=new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -44,38 +44,28 @@ public class Index_Gundam extends Fragment {
                     LinearLayoutManager linearLayoutManager1=new LinearLayoutManager(context);
                     linearLayoutManager1.setOrientation(LinearLayoutManager.HORIZONTAL);
                     UC.setLayoutManager(linearLayoutManager1);
-                    Log.d("infor_length",String.valueOf(inFormationItem[msg.what].getLenght()));
-                    Log.d("TAG1",Thread.currentThread().getName()+"UC");
-                    UC.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem[msg.what]));
+                    UC.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem1));
                     break;
                 case 2:
                     LinearLayoutManager linearLayoutManager2=new LinearLayoutManager(context);
                     linearLayoutManager2.setOrientation(LinearLayoutManager.HORIZONTAL);
                     OO.setLayoutManager(linearLayoutManager2);
-                    Log.d("infor_length",String.valueOf(inFormationItem[msg.what].getLenght()));
-                    Log.d("TAG1",Thread.currentThread().getName()+"OO");
-                    OO.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem[msg.what]));
+                    OO.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem2));
                 case 3:
                     LinearLayoutManager linearLayoutManager3=new LinearLayoutManager(context);
                     linearLayoutManager3.setOrientation(LinearLayoutManager.HORIZONTAL);
                     Seed.setLayoutManager(linearLayoutManager3);
-                    //Log.d("infor_length",String.valueOf(inFormationItem3.getLenght()));
-                    Log.d("TAG1",Thread.currentThread().getName()+"Seed");
-                    Seed.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem[msg.what]));
+                    Seed.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem3));
                 case 4:
                     LinearLayoutManager linearLayoutManager4=new LinearLayoutManager(context);
                     linearLayoutManager4.setOrientation(LinearLayoutManager.HORIZONTAL);
                     icon_blood.setLayoutManager(linearLayoutManager4);
-                    //Log.d("infor_length",String.valueOf(inFormationItem4.getLenght()));
-                    Log.d("TAG1",Thread.currentThread().getName()+"icon_blood");
-                    icon_blood.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem[msg.what]));
+                    icon_blood.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem4));
                 case 5:
                     LinearLayoutManager linearLayoutManager5=new LinearLayoutManager(context);
                     linearLayoutManager5.setOrientation(LinearLayoutManager.HORIZONTAL);
                     W.setLayoutManager(linearLayoutManager5);
-                    //Log.d("infor_length",String.valueOf(inFormationItem5.getLenght()));
-                    Log.d("TAG1",Thread.currentThread().getName()+"W");
-                    W.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem[msg.what]));
+                    W.setAdapter(new Index_RecyclerView_Adapter(getContext(),inFormationItem5));
                     if(swipeRefreshLayout.isRefreshing()){
                         handler.sendEmptyMessage(6);
                     }
@@ -113,39 +103,116 @@ public class Index_Gundam extends Fragment {
         icon_blood=view.findViewById(R.id.icon_blood);
         W=view.findViewById(R.id.W);
         Log.d("context", String.valueOf(context));
-        for(i=0;i<5;i++){
-            try{
-                Executor singleThreadPool= Executors.newSingleThreadExecutor();
-                singleThreadPool.execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        GetInfo getInfo=new GetInfo();
-                        int index=i+1;
-                        RequestBody requestBody=new FormBody.Builder()
-                                .add("request_item",postString) //gundam/st
-                                .add("index",String.valueOf(index))             //第几个recyeleview的图片
-                                .build();
-                        String result=getInfo.GetJson(url,requestBody);
-                        Gson gson=new Gson();
-                        inFormationItem[i]=gson.fromJson(result,InFormationItem.class);
-                        if(inFormationItem[i]!=null){
-                            Log.d("get_info","获取到后端数据"+"----"+ i);
-                            Log.d("tag",String.valueOf(inFormationItem[i].getLenght()));
-                            handler.sendEmptyMessage(i);
-                        }
-                        else {
-                            Log.d("get_info", "UC获取后端数据失败");
-                        }
-                    }
-                });
-                Log.d("TAG",Thread.currentThread().getName()+i);
-            }catch (Exception e){
-                e.printStackTrace();
-            }
-        }
+        singleThreadPool= Executors.newSingleThreadExecutor();
         //获取后端数据，开启单线程
-
-        /*swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+        singleThreadPool.execute(new Runnable() {
+            @Override
+            public void run() {
+                GetInfo getInfo=new GetInfo();
+                RequestBody requestBody=new FormBody.Builder()
+                        .add("request_item",postString) //gundam/st
+                        .add("index",String.valueOf(1))             //第几个recyeleview的图片
+                        .build();
+                String result=getInfo.GetJson(url,requestBody);
+                Gson gson=new Gson();
+                inFormationItem1=gson.fromJson(result,InFormationItem.class);
+                Log.d("information-length",inFormationItem1.getLenght()+"---1");
+                if(inFormationItem1!=null){
+                    handler.sendEmptyMessage(1);
+                }
+                else {
+                }
+            }
+        });
+        getSingleThreadPool1= Executors.newSingleThreadExecutor();
+        getSingleThreadPool1.execute(new Runnable() {
+            @Override
+            public void run() {
+                GetInfo getInfo=new GetInfo();
+                RequestBody requestBody=new FormBody.Builder()
+                        .add("request_item",postString) //gundam/st
+                        .add("index",String.valueOf(2))             //第几个recyeleview的图片
+                        .build();
+                String result=getInfo.GetJson(url,requestBody);
+                Gson gson=new Gson();
+                inFormationItem2=gson.fromJson(result,InFormationItem.class);
+                Log.d("information-length",inFormationItem2.getLenght()+"---2");
+                if(inFormationItem2!=null){
+                    handler.sendEmptyMessage(2);
+                }
+                else {
+                }
+            }
+        });
+        getSingleThreadPool2= Executors.newSingleThreadExecutor();
+        getSingleThreadPool2.execute(new Runnable() {
+            @Override
+            public void run() {
+                GetInfo getInfo=new GetInfo();
+                RequestBody requestBody=new FormBody.Builder()
+                        .add("request_item",postString) //gundam/st
+                        .add("index",String.valueOf(3))             //第几个recyeleview的图片
+                        .build();
+                String result=getInfo.GetJson(url,requestBody);
+                Gson gson=new Gson();
+                inFormationItem3=gson.fromJson(result,InFormationItem.class);
+                Log.d("information-length",inFormationItem3.getLenght()+"---3");
+                if(inFormationItem3!=null){
+                    handler.sendEmptyMessage(3);
+                }
+                else {
+                }
+            }
+        });
+        getSingleThreadPool3= Executors.newSingleThreadExecutor();
+        getSingleThreadPool3.execute(new Runnable() {
+            @Override
+            public void run() {
+                GetInfo getInfo=new GetInfo();
+                RequestBody requestBody=new FormBody.Builder()
+                        .add("request_item",postString) //gundam/st
+                        .add("index",String.valueOf(4))             //第几个recyeleview的图片
+                        .build();
+                String result=getInfo.GetJson(url,requestBody);
+                Gson gson=new Gson();
+                inFormationItem4=gson.fromJson(result,InFormationItem.class);
+                Log.d("information-length",inFormationItem4.getLenght()+"---4");
+                if(inFormationItem4!=null){
+                    Log.d("get_info","icon_blood获取到后端数据");
+                    Log.d("tag",String.valueOf(inFormationItem4.getLenght()));
+                    handler.sendEmptyMessage(4);
+                }
+                else {
+                    Log.d("get_info","icon_blood获取后端数据失败");
+                }
+            }
+        });
+        Log.d("TAG",Thread.currentThread().getName()+"icon_boold");
+        getSingleThreadPool4= Executors.newSingleThreadExecutor();
+        getSingleThreadPool4.execute(new Runnable() {
+            @Override
+            public void run() {
+                GetInfo getInfo=new GetInfo();
+                RequestBody requestBody=new FormBody.Builder()
+                        .add("request_item",postString) //gundam/st
+                        .add("index",String.valueOf(5))             //第几个recyeleview的图片
+                        .build();
+                String result=getInfo.GetJson(url,requestBody);
+                Gson gson=new Gson();
+                inFormationItem5=gson.fromJson(result,InFormationItem.class);
+                Log.d("information-length",inFormationItem5.getLenght()+"---5");
+                if(inFormationItem5!=null){
+                    Log.d("get_info","W获取到后端数据");
+                    Log.d("tag",String.valueOf(inFormationItem5.getLenght()));
+                    handler.sendEmptyMessage(5);
+                }
+                else {
+                    Log.d("get_info","W获取后端数据失败");
+                }
+            }
+        }); 
+        Log.d("TAG",Thread.currentThread().getName()+"W");
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 singleThreadPool= Executors.newSingleThreadExecutor();
@@ -258,6 +325,6 @@ public class Index_Gundam extends Fragment {
                     }
                 });
             }
-        });*/
+        });
     }
 }
