@@ -88,7 +88,7 @@ public class Index_RecyclerView_Adapter extends RecyclerView.Adapter<Index_Recyc
     @Override
     public int getItemCount() {
         //Log.d("name",inFormationItem.getItemname(0));
-        int length=inFormationItem.getLenght();
+        int length=inFormationItem.getItem_img_urls().length;
         Log.d("Length",String.valueOf(length));
         return length;
     }

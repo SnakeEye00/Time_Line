@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import index_fragment.Index;
 import index_fragment.Index_Gundam;
 import index_fragment.Index_Person;
 import index_fragment.Index_ST;
@@ -95,7 +96,7 @@ public class DrawdActivity extends AppCompatActivity
     }
     //初始化Fragement
     private void initFragment() {
-        fragment1=new Index_Gundam();
+        fragment1=new Index();
         fragment2=new Index_ST();
         fragment3=new Login_fragment();
         fragment4=new Logined_fragment();
