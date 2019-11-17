@@ -22,6 +22,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
+import index_fragment.Gundam;
 import index_fragment.Index;
 import index_fragment.Index_Gundam;
 import index_fragment.Index_Person;
@@ -31,7 +32,7 @@ import index_fragment.Logined_fragment;
 
 public class DrawdActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Fragment fragment1,fragment2,fragment3,fragment4;
+    private Fragment fragment1,fragment2,fragment3,fragment4,fragment5;
     private Fragment[] fragments;
     private int lastindex;
     //private MenuItem bottomItem;
@@ -100,7 +101,8 @@ public class DrawdActivity extends AppCompatActivity
         fragment2=new Index_ST();
         fragment3=new Login_fragment();
         fragment4=new Logined_fragment();
-        fragments=new Fragment[]{fragment1,fragment2,fragment3,fragment4};
+        fragment5=new Gundam();
+        fragments=new Fragment[]{fragment1,fragment2,fragment3,fragment4,fragment5};
         lastindex=0;
         getSupportFragmentManager().beginTransaction().replace(R.id.index_fragment,fragment1).show(fragment1).commitAllowingStateLoss();
     }
@@ -143,10 +145,9 @@ public class DrawdActivity extends AppCompatActivity
         int id = item.getItemId();
         if (id == R.id.nav_home) {
             // Handle the camera action
-            //changeFragment(0,lastindex);
-
+            changeFragment(0,lastindex);
         } else if (id == R.id.nav_gallery) {
-
+            changeFragment(4,lastindex);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {

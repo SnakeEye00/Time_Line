@@ -1,12 +1,23 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="index_fragment.Gundam">
-
-    <android.support.v4.view.ViewPager
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="index_fragment.Gundam"
+    android:orientation="vertical">
+    <android.support.design.widget.TabLayout
+        android:id="@+id/Gundam_tablayout"
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="wrap_content"
+        android:background="@color/design_default_color_primary"
+        app:tabIndicatorColor="#EC0909"
+        app:tabSelectedTextColor="#EC0909"
+        app:tabTextColor="#FFFFFF">
+    </android.support.design.widget.TabLayout>
+    <android.support.v4.view.ViewPager
+        android:id="@+id/Gundam_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     </android.support.v4.view.ViewPager>
 
-</FrameLayout>
+</LinearLayout>
