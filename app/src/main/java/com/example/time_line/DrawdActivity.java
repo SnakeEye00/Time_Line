@@ -1,5 +1,6 @@
 package com.example.time_line;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -32,7 +33,7 @@ import index_fragment.Logined_fragment;
 
 public class DrawdActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    private Fragment fragment1,fragment2,fragment3,fragment4,fragment5;
+    private Fragment fragment1,fragment2,fragment3,fragment4;
     private Fragment[] fragments;
     private int lastindex;
     //private MenuItem bottomItem;
@@ -101,8 +102,7 @@ public class DrawdActivity extends AppCompatActivity
         fragment2=new Index_ST();
         fragment3=new Login_fragment();
         fragment4=new Logined_fragment();
-        fragment5=new Gundam();
-        fragments=new Fragment[]{fragment1,fragment2,fragment3,fragment4,fragment5};
+        fragments=new Fragment[]{fragment1,fragment2,fragment3,fragment4};
         lastindex=0;
         getSupportFragmentManager().beginTransaction().replace(R.id.index_fragment,fragment1).show(fragment1).commitAllowingStateLoss();
     }
@@ -147,7 +147,8 @@ public class DrawdActivity extends AppCompatActivity
             // Handle the camera action
             changeFragment(0,lastindex);
         } else if (id == R.id.nav_gallery) {
-            changeFragment(4,lastindex);
+            Intent intent=new Intent(this,GundamActivity.class); //跳离首页，跳转至GundamActivity
+            startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_tools) {

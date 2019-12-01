@@ -1,7 +1,6 @@
 package index_fragment;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,6 +10,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ExpandableListView;
 
 import com.example.time_line.R;
 
@@ -26,8 +26,7 @@ import index_fragment.Gundam_fragments.Serise;
 
 public class Gundam extends Fragment {
     private Context context;
-    private ViewPager viewPager;
-    private TabLayout tabLayout;
+    ViewPager viewPager;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -45,9 +44,12 @@ public class Gundam extends Fragment {
         fragmentList.add(new Jiti());
         fragmentList.add(new Piolt());
         fragmentList.add(new Gundam_geng());
-        tabLayout=view.findViewById(R.id.Gundam_tablayout);
+        TabLayout tabLayout=view.findViewById(R.id.Gundam_tablayout);
         Gundam_ViewPagerAdapter adapter=new Gundam_ViewPagerAdapter(getActivity().getSupportFragmentManager(),fragmentList);
+        viewPager.setOffscreenPageLimit(3);
+        viewPager.setPageMargin(30);
         viewPager.setAdapter(adapter);
+
         //关联ViewPager
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);

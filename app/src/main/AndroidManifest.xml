@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CreateActivity"></activity>
+        <activity android:name=".GundamActivity"></activity>
+        <activity android:name=".CreateActivity" />
         <activity
             android:name=".DrawdActivity"
             android:label="@string/app_name"
@@ -26,7 +27,7 @@
         <activity android:name=".Detail_Info" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name"></activity>
+            android:label="@string/app_name" />
     </application>
 
 </manifest>
